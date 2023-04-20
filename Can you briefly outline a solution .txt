@@ -1,0 +1,27 @@
+Can you briefly outline a solution architecture for the task below:
+
+Generate typeScript and React ts code that achieves the following using an Object Oriented approach:
+
+
+You need to create a Google Chrome extension that renders a table that authorizes user and stores user secret in encrypted in the storage:
+
+Extension window should pop up on installation
+If extension was NOT initialized before, it should generate and present to a user a new secret (secret - just a random string of a static length)
+On the next screen it should ask user to provide a password with confirmation
+If password matches confirmation, it should store generated secret securely using encryption
+Once application is initialized, extension should ask user to log in into the application
+When the user is signed in - they should see the secret. They should also have a button to regenerate the secret (it should then replace the original secret) and log out button
+When user is log out, they should also have a option to reset the extension state to a new-like application
+On a subsequent browser opening, extension should not open a pop up window and:
+If an extension is initialized, it should face the user with either sign in page
+or , if the application was doomed or initialization was not complete, it should ask the user to proceed though the initialization process again.
+
+Other details:
+
+Synchronization between front application and background script
+Object oriented approach
+create the manifest.json as well
+
+
+
+It would take about a week to complete and compensation would be around 250Euros, this can of course be negotiated.

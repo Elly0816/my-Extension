@@ -1,0 +1,29 @@
+{
+    "name": "chrome-extension",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "chrome-types": "^0.1.183",
+        "crypto-js": "^4.1.1",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@crxjs/vite-plugin": "^2.0.0-beta.15",
+        "@types/chrome": "^0.0.228",
+        "@types/crypto-js": "^4.1.1",
+        "@types/node": "^18.15.11",
+        "@types/react": "^18.0.28",
+        "@types/react-dom": "^18.0.11",
+        "@vitejs/plugin-react-swc": "^3.0.0",
+        "typescript": "^4.9.3",
+        "vite": "^4.2.0",
+        "vite-plugin-svgr": "^2.4.0"
+    }
+}

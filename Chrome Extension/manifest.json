@@ -1,0 +1,25 @@
+{
+    "manifest_version": 3,
+    "name": "Hello Extensions",
+    "description": "Base Level Extension",
+    "version": "1.0",
+    "icons": {
+        "16": "public/hello.png",
+        "32": "public/hello.png",
+        "64": "public/hello.png"
+    },
+    "action": {
+        "default_title": "Secrets",
+        "default_icon": "public/hello.png",
+        "default_popup": "index.html"
+    },
+    "content_scripts": [{
+        "matches": ["https://example.org/foo/bar.html"],
+        "js": ["src/main.tsx"]
+    }],
+    "permissions": ["storage", "activeTab", "nativeMessaging", "scripting", "management"],
+    "background": {
+        "service_worker": "src/background.ts",
+        "type": "module"
+    }
+}

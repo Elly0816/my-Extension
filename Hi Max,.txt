@@ -1,0 +1,17 @@
+Hi Max,
+
+Here is my proposed solution architecture:
+
+A manifest file that defines the properties and permissions of the extension.
+A background script that handles events such as installation, initialization and authentication of the extension.
+A content script that interacts with the web page and renders the table.
+An options page that allows the user to change their password.
+
+The extension would use Chrome's storage API to store user data securely.
+The extension would use encryption to store the secret.
+
+Chrome's messaging API would handle the synchronization between the background script and the front end of the application. 
+JavaScript classes would be used to implement an object-Oriented approach
+
+
+It would take about a week to complete and compensation would be around 250Euros, this can of course be negotiated.

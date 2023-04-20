@@ -1,0 +1,78 @@
+The window does not popup, can you help me figure out why? Here is the code
+
+class App {
+    private tabId:number|undefined
+    private secret:string|undefined
+    private length:number|undefined
+    private isInitialized:boolean|undefined
+
+    constructor (length:number){
+        this.length = length
+        
+        
+    }
+
+    async createWindow(type:'popup'|'normal'):Promise<void>{
+        chrome.runtime.onInstalled.addListener(async()=>{
+           const popUp =  await chrome.windows.create({
+                url: "index.html",
+                width: 500,
+                height: 800,
+                type: type
+            })
+
+            this.tabId = popUp.id as number
+        })
+    }
+
+checkInitialized(cb:(initialized:boolean)=>void):void{
+        chrome.storage.local.get('secret', (data)=>{
+            if (data.secret){
+               console.log("The app has been initialized before")
+               this.secret = data.secret
+               this.isInitialized=true
+            } else {
+               this.generateSecret()
+               console.log("The app has not been initialized before")
+               this.isInitialized=false
+            }
+            cb(this.isInitialized)
+        }) 
+    }
+
+listenMessage(reqMessage:string, cb:()=>void):void{
+        chrome.runtime.onMessage.addListener((message, sender, sendResponse)=>{
+            if(message.message === reqMessage){
+                cb()
+            }
+        })
+    }
+
+ getSecret():undefined|string{
+        return this.secret
+    }
+}
+
+const app = new App(16)
+
+app.checkInitialized(async (initialized)=>{
+    if(initialized){
+        await app.createWindow('normal').then(()=>{
+            app.listenMessage('connected', ()=>{
+                console.log('received a message from the client')
+            })
+        })
+    } else {
+       await app.createWindow('popup').then(()=>{
+        app.listenMessage('connected', ()=>{
+            console.log('You received a message from the client')
+        })
+       })
+}
+const secret:string = app.getSecret() as string
+console.log('This is the secret: ',secret)
+app.sendMessage('secret', secret)
+})
+
+
+
